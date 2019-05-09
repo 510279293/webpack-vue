@@ -8,6 +8,7 @@ const app = express()
 // })
 
 var compiler = webpack(config)
+// 使用 webpack-dev-middleware 中间件，搭建服务器
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath,
     stats: {
@@ -27,6 +28,7 @@ compiler.plugin('compilation',function(compilation){
     })
 })
 
+// 注册中间件
 app.use(devMiddleware)
 app.use(hotMiddleware)
 

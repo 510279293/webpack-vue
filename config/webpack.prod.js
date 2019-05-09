@@ -5,7 +5,8 @@ const merge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlwebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
+// 非常重要,若不配置则没有输出页面
+// webpackBaseConfig.output.publicPath = '/'
 module.exports = merge(webpackBaseConfig, {
    // 开启source-map，生产环境下推荐使用cheap-source-map或source-map，后者得到的.map文件体积比较大，但是能够完全还原以前的js代码
    devtool: 'source-map',
