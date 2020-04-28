@@ -32,7 +32,7 @@ compiler.plugin('compilation',function(compilation){
 app.use(devMiddleware)
 app.use(hotMiddleware)
 
-app.listen(3333, function(err){
+app.listen(3338, function(err){
     if (err) {
         console.log(err);
         return;

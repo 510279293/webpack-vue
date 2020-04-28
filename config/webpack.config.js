@@ -1,5 +1,7 @@
 const path = require('path')
-const webpack = require('webpack')
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
     mode: 'development',
     // 入口文件，路径相对于本文件所在的位置，可以写成字符串，数组，对象
@@ -23,7 +25,7 @@ module.exports = {
     devServer: {
       host: '127.0.0.1',
       hot: true,
-      port: 3333,
+      port: 3338,
       contentBase: './dist'
     },
     resolve: {
@@ -50,7 +52,7 @@ module.exports = {
                      preserveWhitespace: false
                    }
                  }
-               }
+               },
              ]
             },
             {
@@ -81,7 +83,23 @@ module.exports = {
                   loader: 'less-loader'
                 },
                 {
-                  loader: 'postcss-loader'
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: [
+                      require("postcss-import")({}),
+                      require("postcss-url")({}),
+                      require("postcss-aspect-ratio-mini")({}), //postcss-layout
+                      require("postcss-px-to-viewport")({
+                        viewportWidth: 375,
+                        viewportHeight: 667,
+                        unitPrecision: 3,
+                        viewportUnit: "vw",
+                        selectorBlackList: [],
+                        minPixelValue: 1,
+                        mediaQuery: false
+                      }),
+                    ]
+                  }
                 }
               ]
             },
